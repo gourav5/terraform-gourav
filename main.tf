@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 #Create a new EC2 launch configuration
-resource "aws_instance" "ec2_public" {
+resource "aws_instance" "WEB_public" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   key_name                    = var.key_name
@@ -18,13 +18,13 @@ resource "aws_instance" "ec2_public" {
     create_before_destroy = true
   }
   tags = {
-    "Name" = "EC2-PUBLIC"
+    "Name" = "WEB-PUBLIC"
   }
   
  
 }
 #Create a new EC2 launch configuration
-resource "aws_instance" "ec2_private" {
+resource "aws_instance" "DB_private" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   key_name                    = var.key_name
@@ -37,7 +37,7 @@ resource "aws_instance" "ec2_private" {
     create_before_destroy = true
   }
   tags = {
-    "Name" = "EC2-PRIVATE"
+    "Name" = "DB-PRIVATE"
   }
  
 }
