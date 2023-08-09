@@ -43,3 +43,10 @@ variable "Private_Subnet_1" {
   description = "Private_Subnet_1"
   type        = string
 }
+
+}
+variable  "user_data_path"
+description = "user_data_path"
+  default     = "userdata.sh"
+}
+ 
