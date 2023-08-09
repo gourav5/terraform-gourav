@@ -93,6 +93,13 @@ resource "aws_security_group" "webserver-security-group" {
     protocol        = "tcp"
     security_groups = ["${aws_security_group.ssh-security-group.id}"]
   }
+
+    ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    security_groups = ["${aws_security_group.ssh-security-group.id}"]
+  }
   egress {
     from_port   = 0
     to_port     = 0
@@ -104,36 +111,3 @@ resource "aws_security_group" "webserver-security-group" {
   }
 }
 
-resource "aws_security_group" "web_server_sg" {
-  vpc_id = aws_vpc.vpc.id
-  name = "web_server_sg"
-  description = "Web Server Security Group"
-
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-#    security_groups = ["${aws_security_group.lb_sg.id}"]
-  }
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]   #You must restrict this to your own IP address
-  }
-
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "web_server_sg"
-  }
-}
-
-output "out_web_server_sg_id" {
-  value = "${aws_security_group.web_server_sg.id}"
-}
