@@ -9,7 +9,7 @@ resource "aws_instance" "WEB_public" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   key_name                    = var.key_name
-  security_groups             = ["${aws_security_group.ssh-security-group.id}"]
+  security_groups             = ["${web_server_sg-security-group.id}"]
   subnet_id                   = aws_subnet.public-subnet-1.id
   user_data_path              = var.user_data_path
   associate_public_ip_address = true
