@@ -31,6 +31,7 @@ resource "aws_instance" "DB_private" {
   key_name                    = var.key_name
   security_groups             = ["${aws_security_group.webserver-security-group.id}"]
   subnet_id                   = aws_subnet.private-subnet-1.id
+  user_data_path              = var.user_data_path
   associate_public_ip_address = false
   #user_data                   = "${data.template_file.provision.rendered}"
   #iam_instance_profile = "${aws_iam_instance_profile.some_profile.id}"
